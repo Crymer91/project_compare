@@ -2,3 +2,4 @@
 .specify
 .venv
 .idea
+__pycache__
