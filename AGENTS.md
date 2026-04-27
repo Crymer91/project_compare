@@ -35,3 +35,10 @@ This is an interactive CLI tool for comparing software solutions using a weighte
 - Input requires Enter key - no special key handling
 - Scores must be integers 0-5, validates input
 - All output is in Russian (interface, prompts, results)
+
+<!-- SPECKIT START -->
+**Plan**: `specs/001-add-cli-score-descriptions/plan.md`
+- Research: `specs/001-add-cli-score-descriptions/research.md`
+- Data Model: `specs/001-add-cli-score-descriptions/data-model.md`
+- Quick Start: `specs/001-add-cli-score-descriptions/quickstart.md`
+<!-- SPECKIT END -->
