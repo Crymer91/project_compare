@@ -1,0 +1,349 @@
+# Decision Framework: Internal Tools / Solutions Evaluation
+
+## Purpose
+
+This framework is designed to compare competing technical solutions (typically internal tools, platforms, or services) in a corporate environment.
+
+It intentionally does NOT focus on “technical excellence” in isolation.
+
+Instead, it evaluates:
+
+* likelihood of adoption
+* ability to scale inside an organization
+* survivability without key individuals
+
+The output is a weighted score and a structural understanding of why one solution wins.
+
+---
+
+# Scoring Model
+
+Each metric is scored from 0 to 5:
+
+0 — отсутствует / критически плохо
+1 — очень слабо
+2 — ниже среднего
+3 — приемлемо
+4 — хорошо
+5 — отлично
+
+---
+
+# SECTION A — Adoption (Weight: 25%)
+
+## A1. Time-to-first-value
+
+**What it measures:**
+How quickly a user gets the first meaningful result.
+
+**Interpretation:**
+This is one of the strongest predictors of adoption. If value is delayed, users drop off.
+
+**Examples:**
+
+* 0 → weeks of setup before anything works
+* 3 → requires half a day to see value
+* 5 → works within minutes
+
+**Heuristic:**
+If a user cannot demonstrate value in the same working session, score ≤2.
+
+---
+
+## A2. Integration Complexity
+
+**What it measures:**
+How difficult it is to integrate into an existing system.
+
+**Includes:**
+
+* number of systems involved
+* approvals required
+* cross-team dependencies
+
+**Examples:**
+
+* 0 → requires infra changes, security approval, multiple teams
+* 3 → moderate integration effort
+* 5 → single PR / config change
+
+**Anti-pattern:**
+“Technically simple but organizationally complex” → still low score.
+
+---
+
+## A3. Required Expertise
+
+**What it measures:**
+Who can realistically use and maintain the solution.
+
+**Examples:**
+
+* 0 → requires domain expert / creator
+* 3 → mid-level engineer
+* 5 → junior can operate safely
+
+**Key idea:**
+If knowledge is concentrated → solution does not scale.
+
+---
+
+## A4. Documentation & Developer Experience (DX)
+
+**What it measures:**
+Clarity, usability, and completeness of documentation and interfaces.
+
+**Examples:**
+
+* 0 → outdated / missing docs
+* 3 → usable but requires interpretation
+* 5 → copy-paste → works
+
+**Signal of quality:**
+Number of implicit assumptions = inverse of score.
+
+---
+
+# SECTION B — Distribution (Weight: 20%)
+
+## B1. Platform Integration
+
+**What it measures:**
+Whether the solution is embedded into standard workflows.
+
+**Examples:**
+
+* 0 → standalone tool
+* 3 → optional plugin
+* 5 → part of CI/CD, templates, or platform layer
+
+**Insight:**
+Distribution often beats product quality.
+
+---
+
+## B2. Default Usage
+
+**What it measures:**
+Whether users need to actively choose the solution.
+
+**Examples:**
+
+* 0 → requires conscious decision
+* 5 → used automatically unless explicitly disabled
+
+**Rule:**
+Anything that requires a decision loses scale.
+
+---
+
+## B3. Top-down Support
+
+**What it measures:**
+Organizational push (platform teams, architecture governance).
+
+**Examples:**
+
+* 0 → grassroots only
+* 3 → informal support
+* 5 → mandated or strongly recommended
+
+---
+
+## B4. Dependency Graph Position
+
+**What it measures:**
+How many other systems depend on this solution.
+
+**Examples:**
+
+* 0 → isolated
+* 5 → critical dependency for multiple services
+
+**Implication:**
+Dependencies create inertia and survival.
+
+---
+
+# SECTION C — Economics (Weight: 15%)
+
+## C1. Clear Value Proposition
+
+**What it measures:**
+Whether value is measurable and communicable.
+
+**Examples:**
+
+* 0 → “seems useful”
+* 5 → clear metrics (time saved, incidents reduced, cost avoided)
+
+---
+
+## C2. Total Cost of Ownership (TCO)
+
+**What it measures:**
+Ongoing cost (infra, maintenance, support).
+
+**Examples:**
+
+* 0 → expensive to run and maintain
+* 5 → negligible cost
+
+---
+
+## C3. Internal Economic Model
+
+**What it measures:**
+Whether usage is tied to any accountability mechanism.
+
+**Examples:**
+
+* 0 → no ownership, no metrics
+* 5 → linked to KPIs, showback, or budgets
+
+---
+
+# SECTION D — Risk & Trust (Weight: 15%)
+
+## D1. Reliability / SLA
+
+**What it measures:**
+Operational stability and guarantees.
+
+**Examples:**
+
+* 0 → best effort
+* 5 → formal SLA with monitoring
+
+---
+
+## D2. Support Model
+
+**What it measures:**
+Who helps when something breaks.
+
+**Examples:**
+
+* 0 → “message the author”
+* 5 → team ownership, on-call rotation
+
+---
+
+## D3. Security & Compliance
+
+**What it measures:**
+Alignment with internal security and audit requirements.
+
+**Examples:**
+
+* 0 → blocked by security
+* 5 → fully compliant, pre-approved
+
+---
+
+# SECTION E — Switching & Lock-in (Weight: 10%)
+
+## E1. Cost to Adopt
+
+**What it measures:**
+Effort required to switch TO this solution.
+
+---
+
+## E2. Cost to Leave (Lock-in)
+
+**What it measures:**
+Effort required to replace it later.
+
+**Insight:**
+High lock-in increases survivability but may reduce adoption.
+
+---
+
+# SECTION F — Product Maturity (Weight: 10%)
+
+## F1. Roadmap
+
+**What it measures:**
+Clarity and continuity of development.
+
+---
+
+## F2. Ownership
+
+**What it measures:**
+Whether responsibility is institutionalized.
+
+**Examples:**
+
+* 0 → single person
+* 5 → dedicated team
+
+---
+
+## F3. Feedback Loop
+
+**What it measures:**
+How quickly user feedback is processed.
+
+---
+
+# SECTION G — Community (Weight: 5%)
+
+## G1. Contributors
+
+**What it measures:**
+Diversity of contributors.
+
+---
+
+## G2. Processes
+
+**What it measures:**
+Presence of structured collaboration (issues, RFCs, etc.)
+
+---
+
+# Critical Failure Conditions
+
+A solution is unlikely to succeed if any of the following are weak:
+
+* Adoption < 3
+* Distribution < 3
+* Risk & Trust < 3
+
+These are primary failure vectors.
+
+---
+
+# Typical Failure Patterns
+
+## 1. “Technically superior but unused”
+
+High quality, low adoption.
+
+## 2. “Hero-driven system”
+
+Depends on one person → dies after they leave.
+
+## 3. “Invisible solution”
+
+No distribution → no users.
+
+## 4. “Enterprise burden”
+
+High compliance, terrible usability.
+
+---
+
+# Core Insight
+
+Winning solutions are not the most advanced.
+
+They are the ones that:
+
+* are easiest to start using
+* are hardest to avoid
+* feel safe to rely on
+
+---
